@@ -38,6 +38,15 @@ const loadData = (() => {
   };  
 });
 
+const objectsEqual = ((o1, o2) => {
+  return Object.keys(o1).length === Object.keys(o2).length 
+    && Object.keys(o1).every(p => o1[p] === o2[p])
+});
+
+const arraysEqual = ((a1, a2) => {
+  return a1.length === a2.length && a1.every((o, idx) => objectsEqual(o, a2[idx]))
+})
+
 export class DashboardElement extends LitElement {
 
   static get styles() {
@@ -51,10 +60,30 @@ export class DashboardElement extends LitElement {
 
   static get properties() {
     return {
-      fermenting: {type: Array},
-      maturing: {type: Array},
-      dispensing: {type: Array},
-      recipes: {type: Array}
+      fermenting: {
+        type: Array,
+        hasChanged(newVal, oldVal) {
+          return !arraysEqual(newVal, oldVal);
+        }
+      },
+      maturing: {
+        type: Array,
+        hasChanged(newVal, oldVal) {
+          return !arraysEqual(newVal, oldVal);
+        }
+      },
+      dispensing: {
+        type: Array,
+        hasChanged(newVal, oldVal) {
+          return !arraysEqual(newVal, oldVal);
+        }
+      },
+      recipes: {
+        type: Array,
+        hasChanged(newVal, oldVal) {
+          return !arraysEqual(newVal, oldVal);
+        }
+      }
     }
   }
 
