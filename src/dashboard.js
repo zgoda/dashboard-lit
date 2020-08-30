@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit-element';
 
 const ItemList = ((title, items) => {
   return html`
-    <div>
+    <div class="col">
       <h2>${title}</h2>
       <ul>
         ${items.map((item) => html`<li>${item.name}</li>`)}
@@ -14,10 +14,14 @@ const ItemList = ((title, items) => {
 const Dashboard = ((fermenting, maturing, dispensing, recipes) => {
   return html`
     <h1>Mój Brewlog</h1>
-    ${ItemList('Fermentuje', fermenting)}
-    ${ItemList('Dojrzewa', maturing)}
-    ${ItemList('Wyszynk', dispensing)}
-    ${ItemList('Receptury', recipes)}
+    <div class="row">
+      ${ItemList('Fermentuje', fermenting)}
+      ${ItemList('Dojrzewa', maturing)}
+    </div>
+    <div class="row">
+      ${ItemList('Wyszynk', dispensing)}
+      ${ItemList('Receptury', recipes)}
+    </div>
   `;
 });
 
@@ -44,6 +48,9 @@ const objectsEqual = ((o1, o2) => {
 });
 
 const arraysEqual = ((a1, a2) => {
+  if ((a1 == null) || (a2 == null)) {
+    return false;
+  }
   return a1.length === a2.length && a1.every((o, idx) => objectsEqual(o, a2[idx]))
 })
 
@@ -54,6 +61,12 @@ export class DashboardElement extends LitElement {
       :host {
         display: block;
         padding: 1rem;
+      }
+      .row {
+        display: flex;
+      }
+      .col {
+        flex: 50%;
       }
     `;
   }
