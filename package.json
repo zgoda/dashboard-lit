@@ -2,7 +2,7 @@
   "name": "dashboard-lit",
   "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "Brewlog dashboard using LitElement",
   "main": "index.js",
   "scripts": {
     "serve": "es-dev-server --node-resolve --watch",
@@ -12,16 +12,16 @@
   "author": "Jarek Zgoda",
   "repository": {
     "type": "git",
-    "url": "zgoda/dashboard-lit"
+    "url": "https://github.com/zgoda/dashboard-lit.git"
   },
   "license": "MIT",
   "dependencies": {
     "lit-element": "^2.4.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "es-dev-server": "^1.57.4",
-    "eslint": "^7.7.0",
+    "@babel/eslint-parser": "^7.13.8",
+    "es-dev-server": "^2.1.0",
+    "eslint": "^7.21.0",
     "lit-analyzer": "^1.2.1",
     "web-component-analyzer": "^1.1.6"
   }
